@@ -1,19 +1,38 @@
 # Projeto ETL de Vendas
 
-Este projeto simula um pipeline de ETL simples usando Python, Pandas e PostgreSQL.
+Exemplo de pipeline **Extract-Transform-Load** implementado em Python para
+inserir registros de vendas em um banco PostgreSQL.
 
-## Estrutura
+## Pré-requisitos
+- Python 3.10+
+- Banco PostgreSQL acessível
+- Dependências listadas em `requirements.txt`
+
+Instale os pacotes necessários:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Estrutura do projeto
+- `data/`: CSV de exemplo com as vendas
+- `sql/`: script SQL para criar a tabela `vendas`
+- `src/etl_vendas.py`: funções `extract`, `transform` e `load`
+
+### Etapas do ETL
 - **Extract**: leitura de dados de um arquivo CSV
-- **Transform**: tratamento de dados nulos e criação de campo `valor_total`
-- **Load**: inserção dos dados em uma tabela PostgreSQL
+- **Transform**: tratamento de dados nulos e criação do campo `valor_total`
+- **Load**: inserção dos dados em lote na tabela PostgreSQL usando
+  `psycopg2.extras.execute_values`
 
 ## Como executar
-1. Crie um banco PostgreSQL local
-2. Execute o script em `sql/create_tables.sql`
-3. Configure o acesso no `src/etl_vendas.py`
-4. Rode o script ETL a partir da raiz do projeto. O script procura o arquivo CSV
+1. Crie um banco PostgreSQL local e rode `sql/create_tables.sql`
+2. Ajuste as credenciais de acesso no dicionário `DB_CONFIG` dentro de
+   `src/etl_vendas.py`
+3. Execute o ETL a partir da raiz do projeto. O script procura o arquivo CSV
    padrão em `data/vendas_raw.csv`, mas você pode informar um caminho
    diferente como argumento:
+
 ```bash
 # usando o CSV padrão
 python src/etl_vendas.py
@@ -22,5 +41,6 @@ python src/etl_vendas.py
 python src/etl_vendas.py caminho/para/seu_arquivo.csv
 ```
 
-## Exemplo de dados
-Veja o arquivo `data/vendas_raw.csv`
+## Dados de exemplo
+O arquivo `data/vendas_raw.csv` contém um conjunto pequeno de vendas usado para
+testar o pipeline.
