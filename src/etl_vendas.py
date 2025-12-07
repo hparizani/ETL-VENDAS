@@ -1,5 +1,7 @@
 import pandas as pd
 import psycopg2
+from psycopg2 import sql
+from psycopg2.extras import execute_values
 import sys
 from pathlib import Path
 
