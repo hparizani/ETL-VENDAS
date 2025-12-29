@@ -1,46 +1,34 @@
-# Projeto ETL de Vendas
+# Sales ETL Pipeline (Python & SQL)
 
-Exemplo de pipeline **Extract-Transform-Load** implementado em Python para
-inserir registros de vendas em um banco PostgreSQL.
+## 🚀 Project Overview
 
-## Pré-requisitos
-- Python 3.10+
-- Banco PostgreSQL acessível
-- Dependências listadas em `requirements.txt`
+This project demonstrates a complete *ETL (Extract, Transform, Load)* process built with Python. It automates the ingestion of sales data from flat files (CSV) into a relational database, ensuring data integrity and structured storage for further analysis.
 
-Instale os pacotes necessários:
+## 🛠 Tech Stack
 
-```bash
-pip install -r requirements.txt
-```
+* Language: Python 3.x
+* Data Manipulation: Pandas
+* Database Integration: SQLAlchemy
+* Database: PostgreSQL / MySQL / SQLite (Configurable)
+* Version Control: Git
 
-## Estrutura do projeto
-- `data/`: CSV de exemplo com as vendas
-- `sql/`: script SQL para criar a tabela `vendas`
-- `src/etl_vendas.py`: funções `extract`, `transform` e `load`
+## 📋 Key Features
+* Extraction: Efficient reading of large CSV datasets using Pandas.
+* Transformation: Data cleaning and type conversion.
+  * handing missing values.
+  * Standardizing formats for database compatibillity.
+* Loading: Robust data persistence into a relational database using SQLAlchemy's ORM capabilities. 
 
-### Etapas do ETL
-- **Extract**: leitura de dados de um arquivo CSV
-- **Transform**: tratamento de dados nulos e criação do campo `valor_total`
-- **Load**: inserção dos dados em lote na tabela PostgreSQL usando
-  `psycopg2.extras.execute_values`
+## ⚙️ How to Run
+1. Clone the repository:
+   `git clone https://github.com/hparizani/ETL-VENDAS.git`
+2. Install dependencies:
+   `pip install -r requirementes.txt`
+3. Run the pipeline:
+   `python main.py`
 
-## Como executar
-1. Crie um banco PostgreSQL local e rode `sql/create_tables.sql`
-2. Ajuste as credenciais de acesso no dicionário `DB_CONFIG` dentro de
-   `src/etl_vendas.py`
-3. Execute o ETL a partir da raiz do projeto. O script procura o arquivo CSV
-   padrão em `data/vendas_raw.csv`, mas você pode informar um caminho
-   diferente como argumento:
-
-```bash
-# usando o CSV padrão
-python src/etl_vendas.py
-
-# ou apontando para outro CSV
-python src/etl_vendas.py caminho/para/seu_arquivo.csv
-```
-
-## Dados de exemplo
-O arquivo `data/vendas_raw.csv` contém um conjunto pequeno de vendas usado para
-testar o pipeline.
+## 📈 Future Improvements (Roadmap)
+* [] Containerization: Add Docker and Docker Compose support for easy deploment.
+* [] Logging & Monitoring: Implement Python's logging library for better traceability.
+* [] API Integration: Develop a FastAPI layer to serve the processed data.
+* [] Unit Testing: Add Pytest for critical data transformation functions.
